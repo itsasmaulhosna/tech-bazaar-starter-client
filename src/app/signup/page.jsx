@@ -23,7 +23,8 @@ export default function SignUpPage() {
     const user = Object.fromEntries(formData.entries());
 
     await authClient.signUp.email({
-      ...user
+      ...user,
+      plan: "free", // Set the default plan to "free" during signup
     });
 
     redirect('/')
@@ -60,7 +61,7 @@ export default function SignUpPage() {
                 <FieldError />
               </TextField>
 
-              {/* <Select isRequired name="role" placeholder="Select one">
+               <Select isRequired name="role" placeholder="Select one">
                 <Label>Signup As</Label>
                 <Select.Trigger>
                   <Select.Value />
@@ -78,7 +79,7 @@ export default function SignUpPage() {
                     </ListBox.Item>
                   </ListBox>
                 </Select.Popover>
-              </Select> */}
+              </Select> 
             </Fieldset.Group>
 
             <Button type="submit" className={"w-full"}>
