@@ -136,8 +136,10 @@ if(pathname.includes("dashboard")){
                   >
                     <Dropdown.Item id="new-file" textValue="New file">
                     
+                        <Link href={`/dashboard/${user?.role}`} className="flex items-center gap-2">
                         <MdDashboard />
                         <Label>Dashboard</Label>
+                        </Link>
                   
                   
                     </Dropdown.Item>

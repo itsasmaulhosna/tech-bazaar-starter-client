@@ -1,18 +1,19 @@
-import { NextResponse } from "next/server";
-import { auth } from "./lib/auth";
-import { cookies, headers } from "next/headers"; 
+import { NextResponse } from 'next/server';
+import { auth } from './lib/auth';
+import { cookies, headers } from 'next/headers';
 
 export async function proxy(request) {
-   const session = await auth.api.getSession({
-    headers: await headers()
-   }) 
-
-   if(!session){
-    return NextResponse.redirect(new URL('/signin', request.url))
-   }
-
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (session?.user?.role !== 'free') {
+    return NextResponse.redirect(new URL('/pricing', request.url));
+  }
+  if (!session) {
+    return NextResponse.redirect(new URL('/signin', request.url));
+  }
 }
 
 export const config = {
-    matcher: ['/profile']
-}
+  matcher: ['/profile', '/dashboard/seller'],
+};
