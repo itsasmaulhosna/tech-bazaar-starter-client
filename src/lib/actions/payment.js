@@ -1,4 +1,4 @@
-//'use client';
+'use server';
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 export const subscription = async (data) => {
   const res = await fetch(`${SERVER_URL}/subscription`, {
