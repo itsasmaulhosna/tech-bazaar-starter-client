@@ -1,14 +1,17 @@
 "use client";
 
+import { addProduct } from "@/lib/actions/product";
 import {Envelope} from "@gravity-ui/icons";
 import {Button, Input, Label, Modal, Surface, TextField} from "@heroui/react";
 
 export function AddProductsModal() {
-  const onSubmit = (event) => {
+  const onSubmit = async(event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     console.log(data);
+const result=await addProduct(data);
+console.log(result);
   };
   return (
     <Modal>
