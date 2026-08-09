@@ -1,9 +1,10 @@
+import { AddProductsModal } from '@/components/Dashboard/seller/AddProductsModal';
 import React from 'react';
 
 const SellerProducts = () => {
     return (
         <div>
-            <h1>Seller Products</h1>
+            <AddProductsModal/>
         </div>
     );
 };
