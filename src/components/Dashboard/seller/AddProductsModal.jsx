@@ -1,6 +1,7 @@
 "use client";
 
 import { addProduct } from "@/lib/actions/product";
+import { imageUpload } from "@/lib/imageUpload";
 import {Envelope} from "@gravity-ui/icons";
 import {Button, Input, Label, Modal, Surface, TextField} from "@heroui/react";
 
@@ -10,8 +11,9 @@ export function AddProductsModal() {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     console.log(data);
-const result=await addProduct(data);
-console.log(result);
+    const imageFile=await imageUpload(data.image);
+// const result=await addProduct(data);
+// console.log(result);
   };
   return (
     <Modal>
@@ -41,9 +43,13 @@ console.log(result);
                     <Label>Price</Label>
                     <Input placeholder="Enter product price" />
                   </TextField>
-                  <TextField className="w-full" name="quantity" variant="secondary">
+                  <TextField className="w-full" name="quantity" type="number" variant="secondary">
                     <Label>Quantity</Label>
                     <Input placeholder="Enter product quantity" />
+                  </TextField>
+                  <TextField className="w-full" name="image" type='file' variant="secondary">
+                    <Label>Product Image</Label>
+                    <Input placeholder="Enter product image URL" />
                   </TextField>
                               <Modal.Footer>
   <Button slot="close" variant="secondary">
