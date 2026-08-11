@@ -8,12 +8,13 @@ import {Button, Input, Label, Modal, Surface, TextField} from "@heroui/react";
 export function AddProductsModal() {
   const onSubmit = async(event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData.entries());
     console.log(data);
     const imageFile=await imageUpload(data.image);
-// const result=await addProduct(data);
-// console.log(result);
+    
+const result=await addProduct({...data,image: imageFile});
+console.log(result);
   };
   return (
     <Modal>
@@ -47,10 +48,16 @@ export function AddProductsModal() {
                     <Label>Quantity</Label>
                     <Input placeholder="Enter product quantity" />
                   </TextField>
-                  <TextField className="w-full" name="image" type='file' variant="secondary">
-                    <Label>Product Image</Label>
-                    <Input placeholder="Enter product image URL" />
-                  </TextField>
+                  
+                  <div className="flex flex-col gap-2">
+  <label>Product Image</label>
+
+  <input
+    type="file"
+    name="image"
+    // accept="image"
+  />
+</div>
                               <Modal.Footer>
   <Button slot="close" variant="secondary">
     Cancel
