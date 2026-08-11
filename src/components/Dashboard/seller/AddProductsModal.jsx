@@ -1,11 +1,16 @@
 "use client";
 
 import { addProduct } from "@/lib/actions/product";
+import { authClient } from "@/lib/auth-client";
 import { imageUpload } from "@/lib/imageUpload";
 import {Envelope} from "@gravity-ui/icons";
 import {Button, Input, Label, Modal, Surface, TextField} from "@heroui/react";
 
 export function AddProductsModal() {
+const { data: session } = authClient.useSession();
+  const user = session?.user;
+
+
   const onSubmit = async(event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -13,7 +18,7 @@ export function AddProductsModal() {
     console.log(data);
     const imageFile=await imageUpload(data.image);
     
-const result=await addProduct({...data,image: imageFile});
+const result=await addProduct({...data,image: imageFile,userId: user?.id});
 console.log(result);
   };
   return (
