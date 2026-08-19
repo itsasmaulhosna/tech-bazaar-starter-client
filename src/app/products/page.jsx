@@ -1,3 +1,4 @@
+import Link from "next/link";
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const Productpage = async () => {
@@ -41,9 +42,13 @@ const Productpage = async () => {
                   ${product.price}
                 </span>
 
-                <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
+                <Link
+
+                  href={`/products/${product._id}`}
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 cursor-pointer"
+                >
                   Details
-                </button>
+                </Link>
               </div>
             </div>
           </div>
