@@ -50,6 +50,8 @@ const Productpage = async () => {
                   Details
                 </Link>
               </div>
+              
+
             </div>
           </div>
         ))}

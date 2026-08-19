@@ -121,13 +121,18 @@ const ProductDetailspage = async ({ params }) => {
                 >
                   Add to Cart
                 </button>
-
-                <button
+         <form action="/api/payment" method="POST">
+                <input value={product.price} name="price" type="hidden"/>
+                <input value={product.name} name="name" type="hidden"/>
+                <input value={product._id} name="productId" type="hidden"/>
+                <button type="submit"
                   disabled={product.quantity === 0}
                   className="flex-1 px-6 py-3.5 rounded-xl border-2 border-black dark:border-white text-gray-900 dark:text-white font-semibold hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Buy Now
                 </button>
+              </form>
+                
 
               </div>
 
