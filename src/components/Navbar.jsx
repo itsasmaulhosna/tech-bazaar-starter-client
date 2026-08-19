@@ -81,7 +81,7 @@ if(pathname.includes("dashboard")){
           <ul className="hidden items-center gap-4 md:flex">
             <li>
               <Link
-                href="#"
+                href="/products"
                 className="font-medium text-accent"
                 aria-current="page"
               >
